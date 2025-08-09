@@ -1,5 +1,5 @@
 import { ThemeProvider } from "next-themes";
-import { Heart, Target, Users, Zap, Mail, Github, Linkedin, Globe } from "lucide-react";
+import { Heart, Target, Users, Zap, Mail, Github, Linkedin, Globe, Flag, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ const Sobre = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="animate-slide-up">
                 <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
-                  <Heart className="h-8 w-8 text-primary" />
+                  <CheckCircle className="h-8 w-8 text-primary" />
                   Nossa Missão
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">

@@ -9,14 +9,13 @@ interface AgentCardProps {
   onClick: () => void;
 }
 
-
-const AgentCard = ({ name, description, icon: Icon, color, onClick }: AgentCardProps) => {
+const AgentCard = ({ name, description, icon: Icon, onClick }: AgentCardProps) => {
   return (
     <div className="group cursor-pointer">
       <div className="bg-card border border-border rounded-xl p-6 shadow-card hover:shadow-soft transition-all duration-300 hover:scale-105 active:scale-95 hover:border-primary/30 min-h-[280px] flex flex-col">
         {/* Icon */}
         <div className="flex justify-center mb-4">
-          <div className={`p-4 rounded-xl ${color} group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+          <div className={`p-4 rounded-xl bg-gradient-primary group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
             <Icon className="h-10 w-10 text-primary-foreground" />
           </div>
         </div>

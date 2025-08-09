@@ -1,5 +1,5 @@
 import { ThemeProvider } from "next-themes";
-import { Brain, Ear, Eye, Heart, Volume2, Target, Zap, Users } from "lucide-react";
+import { Brain, Ear, Eye, Heart, Volume2, Target, Zap, Users, Play } from "lucide-react";
 import Header from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -46,7 +46,7 @@ const agents = [
       "Compreensão aprimorada"
     ],
     icon: Ear,
-    color: "bg-gradient-secondary",
+    color: "bg-gradient-primary",
     stats: { usage: "0", satisfaction: "0%" }
   },
   {
@@ -67,7 +67,7 @@ const agents = [
       "Maior autonomia na leitura"
     ],
     icon: Eye,
-    color: "bg-secondary-accent",
+    color: "bg-gradient-primary",
     stats: { usage: "0", satisfaction: "0%" }
   },
   {
@@ -88,7 +88,7 @@ const agents = [
       "Comunicação efetiva"
     ],
     icon: Heart,
-    color: "bg-accent",
+    color: "bg-gradient-primary",
     stats: { usage: "0", satisfaction: "0%" }
   },
   {
@@ -109,7 +109,7 @@ const agents = [
       "Portabilidade do conteúdo"
     ],
     icon: Volume2,
-    color: "bg-primary-glow",
+    color: "bg-gradient-primary",
     stats: { usage: "0", satisfaction: "0%" }
   },
 ];
@@ -150,11 +150,11 @@ const Agentes = () => {
             
             <div className="flex items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2 bg-card p-3 rounded-lg shadow-card">
-                <Target className="h-5 w-5 text-primary" />
+                <Target className="h-5 w-5 text-green-500" />
                 <span className="font-medium">5 Agentes Especializados</span>
               </div>
               <div className="flex items-center gap-2 bg-card p-3 rounded-lg shadow-card">
-                <Zap className="h-5 w-5 text-primary" />
+                <Zap className="h-5 w-5 text-yellow-400" />
                 <span className="font-medium">Tecnologia IA Avançada</span>
               </div>
               <div className="flex items-center gap-2 bg-card p-3 rounded-lg shadow-card">
@@ -203,13 +203,13 @@ const Agentes = () => {
                     {/* Features */}
                     <div>
                       <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                        <Zap className="h-4 w-4 text-primary" />
+                        <Zap className="h-5 w-5 text-yellow-400" />
                         Recursos Principais
                       </h4>
                       <ul className="space-y-2">
                         {agent.features.map((feature, idx) => (
                           <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <div className="h-1.5 w-1.5 bg-primary rounded-full" />
+                            <div className="h-1.5 w-1.5 bg-yellow-500 rounded-full" />
                             {feature}
                           </li>
                         ))}
@@ -219,13 +219,14 @@ const Agentes = () => {
                     {/* Benefits */}
                     <div>
                       <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                        <Target className="h-4 w-4 text-primary" />
+                        <Target className="h-5 w-5 text-green-500" />
                         Benefícios
                       </h4>
                       <ul className="space-y-2">
                         {agent.benefits.map((benefit, idx) => (
                           <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <div className="h-1.5 w-1.5 bg-secondary-accent rounded-full" />
+                            <div className="h-1.5 w-1.5 bg-green-500 rounded-full" />
+
                             {benefit}
                           </li>
                         ))}
@@ -242,7 +243,7 @@ const Agentes = () => {
                       className="gap-2"
                     >
                       Testar Agente
-                      <Target className="h-4 w-4" />
+                      <Play className="h-5 w-5 text-green-500" />
                     </Button>
                   </div>
                 </CardContent>
@@ -265,7 +266,7 @@ const Agentes = () => {
               className="gap-2"
             >
               Começar Agora
-              <Zap className="h-5 w-5" />
+              <Zap className="h-5 w-5 text-yellow-400" />
             </Button>
           </section>
         </main>

@@ -160,7 +160,7 @@ const Index = () => {
               </div>
               
               <div className="space-y-3">
-                <div className="h-12 w-12 bg-gradient-secondary rounded-full flex items-center justify-center mx-auto">
+                <div className="h-12 w-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
                   <Heart className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <h4 className="font-semibold text-foreground">Inclusão Real</h4>
@@ -170,8 +170,8 @@ const Index = () => {
               </div>
               
               <div className="space-y-3">
-                <div className="h-12 w-12 bg-accent rounded-full flex items-center justify-center mx-auto">
-                  <Eye className="h-6 w-6 text-accent-foreground" />
+                <div className="h-12 w-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
+                  <Eye className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <h4 className="font-semibold text-foreground">Fácil de Usar</h4>
                 <p className="text-sm text-muted-foreground">
