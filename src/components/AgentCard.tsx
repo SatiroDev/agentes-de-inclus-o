@@ -9,6 +9,7 @@ interface AgentCardProps {
   onClick: () => void;
 }
 
+
 const AgentCard = ({ name, description, icon: Icon, color, onClick }: AgentCardProps) => {
   return (
     <div className="group cursor-pointer">
