@@ -30,8 +30,12 @@ const Header = () => {
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && navigate("/")}
           >
-            <div className="h-10 w-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <Users className="h-6 w-6 text-primary-foreground" />
+            <div className="h-10 w-10 bg-gradient-red rounded-lg flex items-center justify-center">
+              <img
+                src="/logo.png"
+                alt="Minha Logo"
+                className="h-10 w-10"
+              />
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">Agentes da Inclusão</h1>
@@ -63,13 +67,15 @@ const Header = () => {
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Alternar tema"
             >
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-yellow-400" />
+
+              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-blue-900" />
+
             </Button>
             
             <span className="text-sm text-muted-foreground">Olá, usuário!</span>
             <Button variant="outline" size="sm" className="gap-2">
-              <LogOut className="h-4 w-4" />
+              <LogOut className="h-4 w-4 text-red-500" />
               Sair
             </Button>
           </div>
@@ -127,7 +133,7 @@ const Header = () => {
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <span className="text-sm text-muted-foreground">Olá, usuário!</span>
                 <Button variant="outline" size="sm" className="gap-2">
-                  <LogOut className="h-4 w-4" />
+                  <LogOut className="h-4 w-4 text-red-500" />
                   Sair
                 </Button>
               </div>

@@ -69,7 +69,20 @@ export default {
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-secondary': 'var(--gradient-secondary)',
-				'gradient-gentle': 'var(--gradient-gentle)'
+				'gradient-gentle': 'var(--gradient-gentle)',
+				 'gradient-green-light': 'var(--gradient-green-light)',
+				 'gradient-red': 'var(--gradient-red)',
+				 'gradient-ocean': 'var(--gradient-ocean)',
+				'gradient-sky': 'var(--gradient-sky)',
+				'gradient-deep': 'var(--gradient-deep)',
+				'gradient-ocean-strong': 'var(--gradient-ocean-strong)',
+				'gradient-sky-strong': 'var(--gradient-sky-strong)',
+				'gradient-deep-strong': 'var(--gradient-deep-strong)',
+				'gradient-purple-strong': 'var(--gradient-purple-strong)',
+				'gradient-cyan-strong': 'var(--gradient-cyan-strong)',
+				'gradient-blue-mid': 'var(--gradient-blue-mid)',
+				'gradient-blue-light-mid': 'var(--gradient-blue-light-mid)',
+
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',

@@ -44,6 +44,49 @@ All colors MUST be HSL.
     --input: 220 15% 88%;
     --ring: 213 94% 50%;
 
+     --green-light: 145 65% 65%; /* Verde claro */
+    --green-bright: 150 80% 50%; /* Verde vibrante puxado pro limão */
+    --red-light: 0 85% 65%;  /* Vermelho claro */
+  --red-strong: 0 80% 45%; /* Vermelho mais forte */
+
+
+
+   --dark-blue-strong: 220 70% 12%;
+  --blue-mid-strong: 220 65% 25%;
+  --blue-light-strong: 220 60% 45%;
+  --purple-strong: 265 70% 50%;
+  --cyan-strong: 190 80% 45%;
+
+   --dark-blue-mid: 220 65% 18%;
+  --blue-mid-light: 220 60% 30%;
+  --blue-light-mid: 220 55% 50%;
+
+  /* Gradiente azul escuro médio */
+  --gradient-blue-mid: linear-gradient(135deg, hsl(var(--dark-blue-mid)), hsl(var(--blue-mid-light)));
+  --gradient-blue-light-mid: linear-gradient(135deg, hsl(var(--blue-mid-light)), hsl(var(--blue-light-mid)));
+
+  /* Gradientes */
+  --gradient-ocean-strong: linear-gradient(135deg, hsl(var(--dark-blue-strong)), hsl(var(--blue-mid-strong)));
+  --gradient-sky-strong: linear-gradient(135deg, hsl(var(--dark-blue-strong)), hsl(var(--blue-light-strong)));
+  --gradient-deep-strong: linear-gradient(135deg, hsl(var(--blue-mid-strong)), hsl(var(--blue-light-strong)));
+  --gradient-purple-strong: linear-gradient(135deg, hsl(var(--dark-blue-strong)), hsl(var(--purple-strong)));
+  --gradient-cyan-strong: linear-gradient(135deg, hsl(var(--dark-blue-strong)), hsl(var(--cyan-strong)));
+
+  /* Gradientes baseados nessas cores */
+
+
+  --gradient-red: linear-gradient(
+    135deg,
+    hsl(var(--red-light)),
+    hsl(var(--red-strong))
+  );
+
+    --gradient-green-light: linear-gradient(
+      135deg,
+      hsl(var(--green-light)),
+      hsl(var(--green-bright))
+    );
+
     /* Design tokens for inclusive design */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-accent)));
