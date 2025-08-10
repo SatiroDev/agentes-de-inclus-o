@@ -172,8 +172,8 @@ const Index = () => {
                     className="absolute inset-0 rounded-full animate-spin-slow
                               bg-gradient-sky-strong dark:bg-gradient-purple-strong"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Heart className="h-6 w-6 text-primary-foreground" />
+                  <div className="absolute inset-0 flex items-center justify-center animate-pulse ">
+                    <Heart className="h-6 w-6 text-primary-foreground  animate-pulse-scale" />
                   </div>
                 </div>
                 <h4 className="font-semibold text-foreground">Inclusão Real</h4>

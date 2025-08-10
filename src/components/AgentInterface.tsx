@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Send, Copy, Volume2, Download, RefreshCw, Play, Pause, RotateCcw, UserRound } from "lucide-react";
+import { ArrowLeft, Send, Copy, Volume2, Download, RefreshCw, Play, Pause, RotateCcw, UserRound, FileText, Brush, Paintbrush, Verified, XCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 
@@ -105,7 +105,12 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
     setIsProcessing(false);
     
     toast({
-      title: "Processamento concluído!",
+      title: (
+        <span className="flex items-center gap-2">
+          <Verified size={15} className="text-green-400"/>
+          Processamento concluído!
+        </span>
+      ),
       description: `Texto adaptado pelo ${agent.name} com configurações personalizadas.`,
     });
   };
@@ -114,12 +119,22 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
     try {
       await navigator.clipboard.writeText(outputText);
       toast({
-        title: "Copiado!",
+        title: (
+          <span className="flex items-center gap-2">
+            <Copy size={15} className="text-blue-500"/>
+            Copiado!
+          </span>
+        ),
         description: "Texto copiado para a área de transferência.",
       });
     } catch (error) {
       toast({
-        title: "Erro ao copiar",
+        title: (
+          <span className="flex items-center gap-2">
+            <XCircle size={15} className="text-red-500"/>
+            Erro ao copiar!
+          </span>
+        ),
         description: "Não foi possível copiar o texto.",
         variant: "destructive",
       });
@@ -147,7 +162,12 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
     setInputText("");
     setOutputText("");
     toast({
-      title: "Texto limpo",
+      title: (
+        <span className="flex items-center gap-2">
+          <Paintbrush size={15} className="text-amber-500"/>
+          Texto limpo
+        </span>
+      ),
       description: "Campos de texto foram limpos.",
     });
   };
@@ -158,7 +178,12 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
     setKeepFormatting(true);
     setAudioSpeed([1.0]);
     toast({
-      title: "Configurações redefinidas",
+      title: (
+        <span className="flex items-center gap-2">
+          <RefreshCw size={15} className="animate-spin text-blue-500"/>
+          Configurações redefinidas
+        </span>
+      ),
       description: "Voltando às configurações balanceadas.",
     });
   };
@@ -341,7 +366,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
                   disabled={!inputText && !outputText}
                   className="gap-2"
                 >
-                  <RotateCcw className="h-4 w-4" />
+                  <Paintbrush className="h-4 w-4" />
                   Limpar
                 </Button>
                 
@@ -371,8 +396,8 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
         <Card className="shadow-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <div className={`p-1 rounded ${agent.color}`}>
-                <div className="h-4 w-4 bg-primary-foreground rounded-sm" />
+              <div className="p-1 rounded">
+                <FileText className="h-5 w-5 " />
               </div>
               Texto Adaptado
             </CardTitle>
