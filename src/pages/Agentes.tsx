@@ -229,6 +229,7 @@ const Agentes = () => {
                         <Target className="h-5 w-5 text-green-500" />
                         Benefícios
                       </h4>
+                      
                       <ul className="space-y-2">
                         {agent.benefits.map((benefit, idx) => (
                           <li 
