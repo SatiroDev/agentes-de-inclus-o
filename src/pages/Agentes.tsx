@@ -208,12 +208,19 @@ const Agentes = () => {
                       </h4>
                       <ul className="space-y-2">
                         {agent.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <div className="h-1.5 w-1.5 bg-yellow-500 rounded-full" />
+                          <li
+                            key={idx}
+                            className="flex items-center gap-2 text-sm text-muted-foreground"
+                          >
+                            <div
+                              className="h-1.5 w-1.5 bg-yellow-500 rounded-full animate-pulse"
+                              style={{ animationDelay: `${idx * 0.5}s`, animationDuration: "1.5s" }}
+                            />
                             {feature}
                           </li>
                         ))}
                       </ul>
+
                     </div>
                     
                     {/* Benefits */}
@@ -224,8 +231,12 @@ const Agentes = () => {
                       </h4>
                       <ul className="space-y-2">
                         {agent.benefits.map((benefit, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <div className="h-1.5 w-1.5 bg-green-500 rounded-full" />
+                          <li 
+                              key={idx} 
+                              className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <div 
+                            className="h-1.5 w-1.5 bg-green-500 rounded-full animate-pulse"
+                            style={{ animationDelay : `${idx * 0.5}s`, animationDuration: "1.5"}} />
 
                             {benefit}
                           </li>

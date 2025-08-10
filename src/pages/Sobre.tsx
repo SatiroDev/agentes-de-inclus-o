@@ -53,21 +53,21 @@ const Sobre = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="h-2 w-2 bg-primary rounded-full mt-2" />
+                    <div className="h-2 w-2 bg-gradient-deep-strong rounded-full mt-2" />
                     <div>
                       <h4 className="font-semibold text-foreground">Inclusão Universal</h4>
                       <p className="text-sm text-muted-foreground">Tecnologia acessível para todas as pessoas</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="h-2 w-2 bg-secondary-accent rounded-full mt-2" />
+                    <div className="h-2 w-2 bg-gradient-sky-strong  rounded-full mt-2" />
                     <div>
                       <h4 className="font-semibold text-foreground">Inovação Responsável</h4>
                       <p className="text-sm text-muted-foreground">IA desenvolvida com ética e propósito</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="h-2 w-2 bg-primary-glow rounded-full mt-2" />
+                    <div className="h-2 w-2 bg-gradient-ocean-strong rounded-full mt-2" />
                     <div>
                       <h4 className="font-semibold text-foreground">Impacto Social</h4>
                       <p className="text-sm text-muted-foreground">Foco em transformação positiva da sociedade</p>

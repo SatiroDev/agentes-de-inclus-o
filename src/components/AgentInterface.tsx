@@ -7,8 +7,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Send, Copy, Volume2, Download, RefreshCw, Play, Pause, RotateCcw } from "lucide-react";
+import { ArrowLeft, Send, Copy, Volume2, Download, RefreshCw, Play, Pause, RotateCcw, UserRound } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+
 
 interface Agent {
   name: string;
@@ -22,6 +23,7 @@ interface AgentInterfaceProps {
 }
 
 const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
+  const Icon = agent.icon;
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -173,10 +175,10 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
         >
           <ArrowLeft className="h-4 w-4" />
         </Button>
-        
+
         <div className="flex items-center gap-3">
-          <div className={`p-2 rounded-lg ${agent.color}`}>
-            <div className="h-6 w-6 bg-primary-foreground rounded" />
+          <div className={`p-2 rounded-lg bg-gradient-primary`}>
+            <Icon className="h-6 w-6 transition-transform duration-5 scale-110 animate-pulse"/>
           </div>
           <div>
             <h1 className="text-2xl font-bold text-foreground">{agent.name}</h1>
@@ -184,6 +186,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
           </div>
         </div>
       </div>
+
 
       {/* Advanced Controls */}
       <Card className="shadow-card mb-6">

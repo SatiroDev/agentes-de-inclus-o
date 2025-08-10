@@ -157,8 +157,22 @@ All colors MUST be HSL.
     --input: 222 15% 20%;
     --ring: 213 94% 60%;
 
-    /* Dark mode gradients */
+    --primary: 213 94% 60%;
+    --primary-light: 213 94% 75%;
+    --primary-glow: 213 94% 50%;
+
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    
+    /* Gradiente mais “completo” */
+    --gradient-primary-full: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 1) 0%,
+      hsl(var(--primary-light) / 1) 50%,
+      hsl(var(--primary-glow) / 1) 100%
+    );
+
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary) / 1), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-accent)));
     --gradient-gentle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
     

@@ -130,6 +130,7 @@ const Index = () => {
                 key={agent.name}
                 className="animate-scale-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
+                
               >
                 <AgentCard
                   name={agent.name}
@@ -150,8 +151,14 @@ const Index = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="space-y-3">
-                <div className="h-12 w-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
-                  <Brain className="h-6 w-6 text-primary-foreground" />
+                <div className="relative h-12 w-12 mx-auto rounded-full">
+                  <div
+                    className="absolute inset-0 rounded-full animate-spin-slow
+                              bg-gradient-sky-strong dark:bg-gradient-purple-strong"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Brain className="h-6 w-6 text-primary-foreground" />
+                  </div>
                 </div>
                 <h4 className="font-semibold text-foreground">Inteligência Artificial</h4>
                 <p className="text-sm text-muted-foreground">
@@ -160,8 +167,14 @@ const Index = () => {
               </div>
               
               <div className="space-y-3">
-                <div className="h-12 w-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
-                  <Heart className="h-6 w-6 text-primary-foreground" />
+                <div className="relative h-12 w-12 mx-auto rounded-full">
+                  <div
+                    className="absolute inset-0 rounded-full animate-spin-slow
+                              bg-gradient-sky-strong dark:bg-gradient-purple-strong"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Heart className="h-6 w-6 text-primary-foreground" />
+                  </div>
                 </div>
                 <h4 className="font-semibold text-foreground">Inclusão Real</h4>
                 <p className="text-sm text-muted-foreground">
@@ -170,8 +183,14 @@ const Index = () => {
               </div>
               
               <div className="space-y-3">
-                <div className="h-12 w-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
-                  <Eye className="h-6 w-6 text-primary-foreground" />
+                <div className="relative h-12 w-12 mx-auto rounded-full">
+                  <div
+                    className="absolute inset-0 rounded-full animate-spin-slow
+                              bg-gradient-sky-strong dark:bg-gradient-purple-strong"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Eye className="h-6 w-6 text-primary-foreground" />
+                  </div>
                 </div>
                 <h4 className="font-semibold text-foreground">Fácil de Usar</h4>
                 <p className="text-sm text-muted-foreground">

@@ -30,7 +30,11 @@ const Header = () => {
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && navigate("/")}
           >
-            <div className="h-10 w-10 bg-gradient-red rounded-lg flex items-center justify-center">
+            <div className="h-10 w-10 rounded-lg flex items-center justify-center 
+              bg-gradient-sky-strong  /* cor padrão (tema claro) */
+              dark:bg-gradient-purple-strong  /* cor para o tema escuro */
+
+            ">
               <img
                 src="/logo.png"
                 alt="Minha Logo"
@@ -50,7 +54,7 @@ const Header = () => {
                 key={item.path}
                 variant={isActive(item.path) ? "secondary" : "ghost"} 
                 size="sm" 
-                className="gap-2"
+                className={isActive(item.path) ? " bg-gradient-sky-strong text-white dark:bg-gradient-purple-strong" : "bg-transparent text-gray-500"}
                 onClick={() => navigate(item.path)}
               >
                 <item.icon className="h-4 w-4" />
