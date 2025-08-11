@@ -351,7 +351,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
               placeholder="Cole seu texto aqui..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="min-h-[200px] min-w-[320px] resize-vertical"
+              className="min-h-[200px] resize-vertical"
               aria-label="Texto para processar"
             />
             
