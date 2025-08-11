@@ -82,19 +82,23 @@ const Index = () => {
             
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground mb-8">
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 bg-primary rounded-full"></div>
+                <div className="h-2 w-2 bg-primary rounded-full animate-pulse"
+                style={{ animationDelay : `${0.4}s`, animationDuration: "1.5"}}></div>
                 <span>100% Gratuito</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 bg-secondary-accent rounded-full"></div>
+                <div className="h-2 w-2 bg-primary rounded-full animate-pulse"
+                style={{ animationDelay : `${0.6}s`, animationDuration: "1.5"}}></div>
                 <span>Tecnologia IA Avançada</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 bg-primary-glow rounded-full"></div>
+                <div className="h-2 w-2 bg-primary rounded-full animate-pulse"
+                style={{ animationDelay : `${0.8}s`, animationDuration: "1.5"}}></div>
                 <span>Foco em Acessibilidade</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 bg-accent rounded-full"></div>
+                <div className="h-2 w-2 bg-primary rounded-full animate-pulse"
+                style={{ animationDelay : `${0.9}s`, animationDuration: "1.5"}}></div>
                 <span>5 Agentes Especializados</span>
               </div>
             </div>

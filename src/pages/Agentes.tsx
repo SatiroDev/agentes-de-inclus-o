@@ -4,7 +4,11 @@ import Header from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import AgentInterface from "@/components/AgentInterface";
+import { useLocation, useNavigate } from "react-router-dom";
+
+
 
 const agents = [
   {
@@ -116,20 +120,28 @@ const agents = [
 
 const Agentes = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [selectedAgent, setSelectedAgent] = useState(null);
 
-  const handleTestAgent = (agent) => {
-    // Navega para a página inicial com o agente selecionado
-    navigate("/", { 
-      state: { 
-        selectedAgent: {
-          name: agent.name,
-          description: agent.description,
-          icon: agent.icon,
-          color: agent.color
-        }
-      }
-    });
-  };
+  useEffect(() => {
+    if (location.state?.selectedAgent) {
+      setSelectedAgent(location.state.selectedAgent);
+    }
+  }, [location.state]);
+
+  if (selectedAgent) {
+    return (
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <div className="min-h-screen bg-gradient-gentle">
+          <Header />
+          <AgentInterface
+            agent={selectedAgent}
+            onBack={() => setSelectedAgent(null)}
+          />
+        </div>
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
@@ -251,9 +263,10 @@ const Agentes = () => {
                       Especializado para máxima acessibilidade e inclusão
                     </div>
                     <Button 
-                      onClick={() => handleTestAgent(agent)}
+                      onClick={() => setSelectedAgent(agent)}
                       className="gap-2"
                     >
+                      
                       Testar Agente
                       <Play className="h-5 w-5 text-green-500" />
                     </Button>

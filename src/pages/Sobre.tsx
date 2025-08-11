@@ -4,7 +4,13 @@ import Header from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+const openEmail = () => {
+  window.location.href = "mailto:agentesdeinclusao@gmail.com";
+}
 
+const openGitHub = () => {
+  window.location.href = "https://github.com/SatiroDev/agentes-de-inclus-o"
+}
 const Sobre = () => {
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
@@ -53,21 +59,24 @@ const Sobre = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="h-2 w-2 bg-gradient-deep-strong rounded-full mt-2" />
+                    <div className="h-2 w-2 bg-gradient-sky-strong rounded-full mt-2 animate-pulse"
+                    style={{ animationDelay : `${0.4}s`, animationDuration: "1.5"}}/>
                     <div>
                       <h4 className="font-semibold text-foreground">Inclusão Universal</h4>
                       <p className="text-sm text-muted-foreground">Tecnologia acessível para todas as pessoas</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="h-2 w-2 bg-gradient-sky-strong  rounded-full mt-2" />
+                    <div className="h-2 w-2 bg-gradient-sky-strong  rounded-full mt-2 animate-pulse" 
+                    style={{ animationDelay : `${0.6}s`, animationDuration: "1.5"}}/>
                     <div>
                       <h4 className="font-semibold text-foreground">Inovação Responsável</h4>
                       <p className="text-sm text-muted-foreground">IA desenvolvida com ética e propósito</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="h-2 w-2 bg-gradient-ocean-strong rounded-full mt-2" />
+                    <div className="h-2 w-2 bg-gradient-sky-strong rounded-full mt-2 animate-pulse" 
+                    style={{ animationDelay : `${0.8}s`, animationDuration: "1.5"}}/>
                     <div>
                       <h4 className="font-semibold text-foreground">Impacto Social</h4>
                       <p className="text-sm text-muted-foreground">Foco em transformação positiva da sociedade</p>
@@ -133,11 +142,24 @@ const Sobre = () => {
             </p>
             
             <div className="flex items-center justify-center gap-4 mb-6">
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2 select-none"
+                onClick={openEmail}
+                type="button"
+              >
                 <Mail className="h-4 w-4" />
-                contato@agentesinclusao.com
+                agentesdeinclusao@gmail.com
               </Button>
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="gap-2 select-none"
+                onClick={openGitHub}
+                type="button"
+                >
+                
                 <Github className="h-4 w-4" />
                 GitHub
               </Button>
@@ -149,7 +171,10 @@ const Sobre = () => {
             
             <div className="text-sm text-muted-foreground">
               <Globe className="h-4 w-4 inline mr-2" />
-              Projeto open-source • Licença MIT • Feito com ❤️ para a inclusão
+              Projeto open-source • Licença MIT • Feito com{' '}
+              <Heart className="inline h-4 w-4 text-red-500 animate-pulse" 
+              style={{ fill: "red", stroke: "red" }}/>{' '}
+              para a inclusão
             </div>
           </section>
         </main>
