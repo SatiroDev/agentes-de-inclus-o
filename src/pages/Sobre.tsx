@@ -141,7 +141,7 @@ const Sobre = () => {
               Juntos podemos tornar a web mais inclusiva para todos.
             </p>
             
-            <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
               <Button
                 variant="outline"
                 size="sm"

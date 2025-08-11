@@ -351,7 +351,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
               placeholder="Cole seu texto aqui..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="min-h-[200px] resize-vertical"
+              className="min-h-[200px] min-w-[320px] resize-vertical"
               aria-label="Texto para processar"
             />
             
@@ -407,13 +407,13 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="min-h-[200px] max-h-[300px] p-4 border border-border rounded-lg bg-muted/30 overflow-y-auto">
+            <div className="min-h-[200px] max-h-[320px] p-4 border border-border rounded-lg bg-muted/30 overflow-y-auto">
             {outputText ? (
               <div className="whitespace-pre-wrap break-words text-sm leading-relaxed word-spacing-lg">
                 {outputText}
               </div>
             ) : (
-              <div className="flex items-center justify-center h-full text-muted-foreground">
+              <div className="flex items-left justify-left h-full text-muted-foreground select-none text-base mt-[-7px]">
                 Resultado aparecerá aqui após o processamento
               </div>
             )}
