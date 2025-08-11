@@ -190,7 +190,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-4xl">
+    <div className="container mx-auto px-4 py-6 max-w-4xl min-w-[320px]">
       {/* Header */}
       <div className="flex items-center gap-4 mb-6">
         <Button

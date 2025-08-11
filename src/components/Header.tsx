@@ -19,7 +19,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-background/80 backdrop-blur-md border-b border-border shadow-card sticky top-0 z-50">
+    <header className="bg-background/80 backdrop-blur-md border-b border-border shadow-card sticky top-0 z-50 min-w-[320px]">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
