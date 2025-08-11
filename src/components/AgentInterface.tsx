@@ -336,7 +336,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
 
       <div className="grid gap-6 lg:grid-cols-2 min-w-[320px]">
         {/* Input Section */}
-        <Card className="shadow-card">
+        <Card className="shadow-card min-w-[320px]">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Send className="h-5 w-5" />
