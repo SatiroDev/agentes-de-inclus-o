@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.word-spacing-lg {
+  word-spacing: 0.5rem; /* Ajuste conforme desejar */
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

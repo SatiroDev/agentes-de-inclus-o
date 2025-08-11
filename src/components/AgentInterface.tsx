@@ -81,7 +81,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
       case "Agente TEA":
         const mainPoints = inputText.split(".").filter(s => s.trim().length > 0);
         result = `${contextPrefix}🎯 ESTRUTURAÇÃO OBJETIVA:\n\n`;
-        result += `📝 RESUMO: ${mainPoints[0]?.trim()}.\n\n`;
+        result += `📝 RESUMO: \n${mainPoints[0]?.trim()}.\n\n`;
         result += `🔍 PONTOS PRINCIPAIS:\n`;
         mainPoints.slice(1, 4).forEach((point, i) => {
           result += `${i + 1}️⃣ ${point.trim()}.\n`;
@@ -95,6 +95,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
         result += `🎧 STATUS: Pronto para reprodução\n`;
         result += `📥 Formato disponível: MP3 (download)${mediumSuffix}\n\n`;
         result += `💡 Use os controles de áudio acima para reproduzir, pausar ou ajustar a velocidade.`;
+        result += `\n--- TEXTO A SER NARRADO ---\n\n${inputText}`;
         break;
         
       default:
@@ -406,17 +407,17 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="min-h-[200px] p-4 border border-border rounded-lg bg-muted/30">
-              {outputText ? (
-                <div className="whitespace-pre-line text-sm leading-relaxed">
-                  {outputText}
-                </div>
-              ) : (
-                <div className="flex items-center justify-center h-full text-muted-foreground">
-                  Resultado aparecerá aqui após o processamento
-                </div>
-              )}
-            </div>
+            <div className="min-h-[200px] max-h-[300px] p-4 border border-border rounded-lg bg-muted/30 overflow-y-auto">
+            {outputText ? (
+              <div className="whitespace-pre-wrap break-words text-sm leading-relaxed word-spacing-lg">
+                {outputText}
+              </div>
+            ) : (
+              <div className="flex items-center justify-center h-full text-muted-foreground">
+                Resultado aparecerá aqui após o processamento
+              </div>
+            )}
+          </div>
             
             {outputText && (
               <div className="flex items-center gap-2 pt-2">
