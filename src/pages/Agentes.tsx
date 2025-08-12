@@ -187,7 +187,7 @@ const Agentes = () => {
                 <CardHeader>
                   <div className="flex items-start gap-4">
                     <div className={`p-4 rounded-xl ${agent.color} shadow-lg flex-shrink-0`}>
-                      <agent.icon className="h-7 w-7 text-primary-foreground" />
+                      <agent.icon className="h-8 w-8 text-primary-foreground" />
                     </div>
                     
                     <div className="flex-1 min-w-0">
