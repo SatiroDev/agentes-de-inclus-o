@@ -198,6 +198,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
           size="icon"
           onClick={onBack}
           aria-label="Voltar para lista de agentes"
+          className="min-w-[55px]"
         >
           <ArrowLeft className="h-4 w-4" />
         </Button>

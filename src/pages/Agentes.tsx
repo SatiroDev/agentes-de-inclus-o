@@ -150,7 +150,7 @@ const Agentes = () => {
         
         <main className="container mx-auto px-4 py-8" role="main">
           {/* Hero Section */}
-          <section className="text-center mb-12 animate-fade-in">
+          <section className="text-center mb-12 animate-fade-in min-w-[320px]">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Nossos
               <span className="bg-gradient-primary bg-clip-text text-transparent"> Agentes</span>
@@ -185,7 +185,7 @@ const Agentes = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardHeader>
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 min-w-[310px]">
                     <div className={`p-4 rounded-xl ${agent.color} shadow-lg`}>
                       <agent.icon className="h-8 w-8 text-primary-foreground" />
                     </div>
