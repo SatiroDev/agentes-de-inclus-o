@@ -186,18 +186,21 @@ const Agentes = () => {
               >
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className={`p-4 rounded-xl ${agent.color} shadow-lg`}>
+                    <div className={`p-4 rounded-xl ${agent.color} shadow-lg flex-shrink-0`}>
                       <agent.icon className="h-7 w-7 text-primary-foreground" />
                     </div>
                     
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <CardTitle className="text-2xl text-foreground">{agent.name}</CardTitle>
-                        <div className="flex gap-2">
-                          <Badge variant="secondary" className="text-xs">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
+                        <CardTitle className="text-2xl text-foreground min-w-0">
+                          {agent.name}
+                        </CardTitle>
+                        
+                        <div className="flex gap-2 flex-wrap">
+                          <Badge variant="secondary" className="text-xs whitespace-nowrap">
                             {agent.stats.usage} usuários
                           </Badge>
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs whitespace-nowrap">
                             {agent.stats.satisfaction} satisfação
                           </Badge>
                         </div>
