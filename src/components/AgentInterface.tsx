@@ -355,7 +355,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
               aria-label="Texto para processar"
             />
             
-            <div className="flex items-center justify-between min-w-[130px]">
+            <div className="flex items-center justify-between ">
               <Badge variant="secondary" className="text-xs">
                 {inputText.length} caracteres
               </Badge>
@@ -374,7 +374,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
                 <Button
                   onClick={simulateProcessing}
                   disabled={isProcessing || !inputText.trim()}
-                  className="flex gap-2 min-w-[130px]"
+                  className="flex gap-2 px-4"
                 >
                   {isProcessing ? (
                     <>
