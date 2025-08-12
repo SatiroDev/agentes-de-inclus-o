@@ -374,7 +374,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
                 <Button
                   onClick={simulateProcessing}
                   disabled={isProcessing || !inputText.trim()}
-                  className="gap-2"
+                  className="gap-2 min-w-[130px]"
                 >
                   {isProcessing ? (
                     <>
