@@ -205,7 +205,6 @@ const Agentes = () => {
                           </Badge>
                         </div>
                       </div>
-                      
                       <CardDescription className="text-base leading-relaxed">
                         {agent.fullDescription}
                       </CardDescription>
