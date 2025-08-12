@@ -185,9 +185,9 @@ const Agentes = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardHeader>
-                  <div className="flex items-start gap-4 min-w-[310px]">
+                  <div className="flex items-start gap-4">
                     <div className={`p-4 rounded-xl ${agent.color} shadow-lg`}>
-                      <agent.icon className="h-8 w-8 text-primary-foreground" />
+                      <agent.icon className="h-7 w-7 text-primary-foreground" />
                     </div>
                     
                     <div className="flex-1">
