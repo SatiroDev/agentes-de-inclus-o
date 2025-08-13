@@ -160,7 +160,7 @@ const Agentes = () => {
               de ponta para atender necessidades específicas de acessibilidade.
             </p>
             
-            <div className="flex items-center justify-center gap-6 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2 bg-card p-3 rounded-lg shadow-card">
                 <Target className="h-5 w-5 text-green-500" />
                 <span className="font-medium">5 Agentes Especializados</span>
@@ -174,6 +174,7 @@ const Agentes = () => {
                 <span className="font-medium">0+ Usuários</span>
               </div>
             </div>
+
           </section>
 
           {/* Agents List */}
