@@ -1,2 +1,12 @@
-node_modulos/
+# Node / React
+node_modules/
+dist/
+build/
 
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Arquivos do sistema
+.DS_Store
