@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from agent_manager import AgentManager
 import os
 import pytesseract
+import re 
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract"
 
@@ -31,13 +32,26 @@ def process_image():
     file.save(filepath)
 
     img = Image.open(filepath)
-    texto = pytesseract.image_to_string(img)  # sem 'por' para evitar erro
+    texto = pytesseract.image_to_string(img)  
+    
+    texto = re.sub(r'\r\n|\r', '\n', texto) # normaliza quebras de linha
+    texto = re.sub(r'\n+', '\n', texto) # remove múltiplas linhas vazias
+    texto = texto.strip()
 
-    texto_adaptado = manager.get_response(agent_name, texto)
+    questoes = re.split(r'\n?\s*\d+[\).]?\s+', texto)
+    questoes = [q.strip() for q in questoes if q.strip()]
+
+    questoes_reformuladas = []
+
+    for q in questoes:
+        reformulada = manager.get_response(agent_name, q)
+        questoes_reformuladas.append(reformulada)
 
     return jsonify({
-        "texto_original": texto,
-        "texto_adaptado": texto_adaptado
+        "questoes": [
+            {"original": q, "adaptada": manager.get_response(agent_name, q)}
+            for q in questoes
+        ]
     })
 
 if __name__ == "__main__":

@@ -38,7 +38,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [selectedAgent, setSelectedAgent] = useState<"tdah" | "surdo" | "dislexia" | "tea" | "narrador">("tdah");
+ 
 
 
 
@@ -50,7 +50,7 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
   setError(null);
 };
 // ======= Função para extrair e adaptar texto =======
-const handleExtractFromImage = async () => {
+const handleExtractFromImage = async (agentName: string) => {
   if (!file) {
     setError("Selecione uma imagem antes de continuar.");
     return;
@@ -62,7 +62,7 @@ const handleExtractFromImage = async () => {
   try {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("agent_name", selectedAgent); // envia sempre a string correta
+    formData.append("agent_name", agentName); // envia sempre a string correta
 
     const res = await fetch("http://localhost:5000/process-image", {
       method: "POST",
@@ -71,8 +71,15 @@ const handleExtractFromImage = async () => {
 
     const data = await res.json();
 
-    if (data.texto_adaptado) {
-      setOutputText(data.texto_adaptado);
+    if (data.questoes) {
+      
+      const textoFormatado = data.questoes
+        .map(
+          (q: { original: string; adaptada: string }, i: number) => `Q${i + 1} - Original:\n${q.original}\n\nAdaptada:\n${q.adaptada}`
+        )
+        .join("\n\n--------------------\n\n");
+
+      setOutputText(textoFormatado)
     } else if (data.error) {
       setError(data.error);
     } else {

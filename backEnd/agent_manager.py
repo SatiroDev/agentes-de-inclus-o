@@ -1,10 +1,10 @@
 class AgentManager:
     def __init__(self):
         self.agents = {
-            "tdah": self._tdah_response,
-            "surdo": self._surdo_response,
-            "dislexia": self._dislexia_response,
-            "tea": self._tea_response,
+            "agente tdah": self._tdah_response,
+            "agente surdo": self._surdo_response,
+            "agente dislexia": self._dislexia_response,
+            "agente tea": self._tea_response,
             "narrador": self._narrador_response
         }
 
@@ -21,19 +21,31 @@ class AgentManager:
     # ======== DEFINIÇÕES DE RESPOSTAS ========
 
     def _tdah_response(self, user_input: str) -> str:
-        return f"(TDAH) Entendi sua ideia! Ah, mas... e se a gente também pensasse em {user_input}"
-    
+        # Divide o texto em frases curtas, até 3 frases
+        sentences = user_input.split('.')
+        short_sentences = [s.strip() for s in sentences if s.strip()]
+        return "(TDAH) " + ". ".join(short_sentences[:3]) + ('.' if short_sentences else '')
+
     def _surdo_response(self, user_input: str) -> str:
-        return f"(Surdo) [LIBRAS] Você disse: {user_input}"
-    
+        # Foco em elementos visuais e clareza
+        return "(Surdo) 🔹 " + user_input.replace("exemplo", "mostre")  # pode adicionar emojis ou marcadores
+
     def _dislexia_response(self, user_input: str) -> str:
-        baguncado = "".join(
-            c.upper() if i % 3 == 0 else c for i, c in enumerate(user_input)
-        )
-        return f"(Dislexia) Você quiz dizer: {baguncado}"
-        
+        # Adiciona espaçamento extra entre palavras para facilitar leitura
+        words = user_input.split()
+        spaced_text = "  ".join(words)  # dois espaços entre palavras
+        return "(Dislexia) " + spaced_text
+
     def _tea_response(self, user_input: str) -> str:
-        return f"(TEA) Você escreveu: {user_input}. Isso significa que devemos analisar cuidadosamente cada detalhe."
+        # Detalhes passo a passo
+        sentences = user_input.split('.')
+        sentences = [s.strip() for s in sentences if s.strip()]
+        detailed_sentences = [f"Passo {i+1}: {s}." for i, s in enumerate(sentences)]
+        return "(TEA) " + " ".join(detailed_sentences)
 
     def _narrador_response(self, user_input: str) -> str:
-        return f"(Narrador) O usuário disse: '{user_input}', e os agentes vão reagir a isso."
+        # Resumo narrativo: pega até 3 frases e coloca como narrativa
+        sentences = user_input.split('.')
+        sentences = [s.strip() for s in sentences if s.strip()]
+        summary = " ".join(sentences[:3])
+        return "(Narrador) " + summary + ("..." if len(sentences) > 3 else "")
