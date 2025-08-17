@@ -11,6 +11,8 @@ import { ArrowLeft, Send, Copy, Volume2, Download, RefreshCw, Play, Pause, Rotat
 import { useToast } from "@/hooks/use-toast";
 
 
+
+
 interface Agent {
   name: string;
   description: string;
@@ -22,6 +24,7 @@ interface AgentInterfaceProps {
   onBack: () => void;
 }
 
+
 const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
   const Icon = agent.icon;
   const [inputText, setInputText] = useState("");
@@ -32,7 +35,50 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
   const [keepFormatting, setKeepFormatting] = useState(true);
   const [audioSpeed, setAudioSpeed] = useState([1.0]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const { toast } = useToast();
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const f = e.target.files?.[0] || null;
+  setFile(f);
+  setError(null);
+};
+
+const handleExtractFromImage = async () => {
+  if (!file) return;
+
+  setIsUploading(true);
+  setError(null);
+
+  try {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch("http://localhost:5000/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (data.texto) {
+      setOutputText(data.texto);   // preenche a área de Texto Adaptado
+    } else {
+      setError("Não foi possível extrair o texto da imagem.");
+    }
+  } catch (err) {
+    console.error(err);
+    setError("Erro ao processar a imagem.");
+  } finally {
+    setIsUploading(false);
+  }
+};
+
+
+
 
   const simulateProcessing = async () => {
     if (!inputText.trim()) {
@@ -344,38 +390,53 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
               Texto Original
             </CardTitle>
             <CardDescription>
-              Digite ou cole o texto que deseja adaptar
+              Digite, cole ou envie uma imagem com o texto que deseja adaptar
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            {/* Textarea única e editável */}
             <Textarea
-              placeholder="Cole seu texto aqui..."
+              placeholder="Digite ou cole o texto aqui..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               className="min-h-[200px] resize-vertical"
               aria-label="Texto para processar"
             />
-            
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <Badge variant="secondary" className="text-xs flex-shrink">
-                {inputText.length} caracteres
-              </Badge>
-              
-              <div className="flex items-center gap-2 flex-shrink-0">
+
+            {/* Upload de imagem + botão de extrair */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm">Ou envie uma imagem:</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="p-2 border rounded"
+              />
+
+              {/* Primeira linha de botões: Extrair e Adaptar */}
+              <div className="flex flex-wrap gap-2">
                 <Button
-                  variant="outline"
-                  onClick={clearText}
-                  disabled={!inputText && !outputText}
-                  className="gap-2 min-w-[80px]"
+                  onClick={handleExtractFromImage}
+                  disabled={!file || isUploading}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2"
                 >
-                  <Paintbrush className="h-4 w-4" />
-                  Limpar
+                  {isUploading ? (
+                    <>
+                      <RefreshCw className="h-4 w-4 animate-spin" />
+                      Extraindo...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" />
+                      Extrair texto da imagem
+                    </>
+                  )}
                 </Button>
-                
+
                 <Button
                   onClick={simulateProcessing}
-                  disabled={isProcessing || !inputText.trim()}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 min-w-[100px] max-w-[140px]"
+                  disabled={isUploading || !inputText.trim()}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2"
                 >
                   {isProcessing ? (
                     <>
@@ -390,9 +451,25 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
                   )}
                 </Button>
               </div>
-            </div>
 
+              {/* Segunda linha de botão: Limpar */}
+              <div>
+                <Button
+                  variant="outline"
+                  onClick={clearText}
+                  disabled={!inputText && !outputText}
+                  className="gap-2 min-w-[80px] mt-2"
+                >
+                  <Paintbrush className="h-4 w-4" />
+                  Limpar
+                </Button>
+              </div>
+
+              {error && <p className="text-red-600 text-sm">{error}</p>}
+            </div>
           </CardContent>
+
+
         </Card>
 
         {/* Output Section */}

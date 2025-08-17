@@ -29,6 +29,10 @@ export default function UploadFoto() {
                 const filename = data.file_path.split(/[/\\]/).pop()
                 setImageURL(`http://localhost:5000/uploads/${filename}`)
             }
+
+            if (data.texto) {
+                setResposta(data.texto)
+            }
         } catch (err) {
             console.error(err)
             setResposta("Erro ao enviar a foto")
