@@ -38,6 +38,9 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedAgent, setSelectedAgent] = useState<"tdah" | "surdo" | "dislexia" | "tea" | "narrador">("tdah");
+
+
 
   const { toast } = useToast();
 
@@ -46,9 +49,12 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
   setFile(f);
   setError(null);
 };
-
+// ======= Função para extrair e adaptar texto =======
 const handleExtractFromImage = async () => {
-  if (!file) return;
+  if (!file) {
+    setError("Selecione uma imagem antes de continuar.");
+    return;
+  }
 
   setIsUploading(true);
   setError(null);
@@ -56,18 +62,21 @@ const handleExtractFromImage = async () => {
   try {
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("agent_name", selectedAgent); // envia sempre a string correta
 
-    const res = await fetch("http://localhost:5000/upload", {
+    const res = await fetch("http://localhost:5000/process-image", {
       method: "POST",
       body: formData,
     });
 
     const data = await res.json();
 
-    if (data.texto) {
-      setOutputText(data.texto);   // preenche a área de Texto Adaptado
+    if (data.texto_adaptado) {
+      setOutputText(data.texto_adaptado);
+    } else if (data.error) {
+      setError(data.error);
     } else {
-      setError("Não foi possível extrair o texto da imagem.");
+      setError("Não foi possível extrair ou adaptar o texto da imagem.");
     }
   } catch (err) {
     console.error(err);
@@ -76,6 +85,7 @@ const handleExtractFromImage = async () => {
     setIsUploading(false);
   }
 };
+
 
 
 
@@ -416,7 +426,7 @@ const handleExtractFromImage = async () => {
               {/* Primeira linha de botões: Extrair e Adaptar */}
               <div className="flex flex-wrap gap-2">
                 <Button
-                  onClick={handleExtractFromImage}
+                  onClick={() => handleExtractFromImage(agent.name)}
                   disabled={!file || isUploading}
                   className="inline-flex items-center justify-center gap-2 px-4 py-2"
                 >
