@@ -34,24 +34,22 @@ def process_image():
     img = Image.open(filepath)
     texto = pytesseract.image_to_string(img)  
     
-    texto = re.sub(r'\r\n|\r', '\n', texto) # normaliza quebras de linha
-    texto = re.sub(r'\n+', '\n', texto) # remove múltiplas linhas vazias
-    texto = texto.strip()
+    
 
-    questoes = re.split(r'\n?\s*\d+[\).]?\s+', texto)
+    questoes = re.split(r'\n\d+\.', texto)
     questoes = [q.strip() for q in questoes if q.strip()]
 
     questoes_reformuladas = []
 
     for q in questoes:
-        reformulada = manager.get_response(agent_name, q)
-        questoes_reformuladas.append(reformulada)
+        adaptada = manager.get_response(agent_name, q)
+        questoes_reformuladas.append({
+            "original": q,
+            "adaptada": adaptada
+        })
 
     return jsonify({
-        "questoes": [
-            {"original": q, "adaptada": manager.get_response(agent_name, q)}
-            for q in questoes
-        ]
+        "questoes": questoes_reformuladas
     })
 
 if __name__ == "__main__":

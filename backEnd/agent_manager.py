@@ -1,51 +1,48 @@
+import os
+from dotenv import load_dotenv
+import openai
+
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+
 class AgentManager:
     def __init__(self):
-        self.agents = {
-            "agente tdah": self._tdah_response,
-            "agente surdo": self._surdo_response,
-            "agente dislexia": self._dislexia_response,
-            "agente tea": self._tea_response,
-            "narrador": self._narrador_response
-        }
+        self.agents = [
+            "agente tdah",
+            "agente surdo",
+            "agente dislexia",
+            "agente tea",
+            "narrador"
+        ]
 
-    def get_response(self, agent_name: str, user_input: str) -> str:
+    def get_response(self, agent_name: str, question: str) -> str:
         """
         Pega a resposta do agente com base no nome fornecido.
         """
 
         agent_name = agent_name.lower()
-        if agent_name in self.agents:
-            return self.agents[agent_name](user_input)
-        return f"Agente '{agent_name}' não encontrado."
-    
-    # ======== DEFINIÇÕES DE RESPOSTAS ========
-
-    def _tdah_response(self, user_input: str) -> str:
-        # Divide o texto em frases curtas, até 3 frases
-        sentences = user_input.split('.')
-        short_sentences = [s.strip() for s in sentences if s.strip()]
-        return "(TDAH) " + ". ".join(short_sentences[:3]) + ('.' if short_sentences else '')
-
-    def _surdo_response(self, user_input: str) -> str:
-        # Foco em elementos visuais e clareza
-        return "(Surdo) 🔹 " + user_input.replace("exemplo", "mostre")  # pode adicionar emojis ou marcadores
-
-    def _dislexia_response(self, user_input: str) -> str:
-        # Adiciona espaçamento extra entre palavras para facilitar leitura
-        words = user_input.split()
-        spaced_text = "  ".join(words)  # dois espaços entre palavras
-        return "(Dislexia) " + spaced_text
-
-    def _tea_response(self, user_input: str) -> str:
-        # Detalhes passo a passo
-        sentences = user_input.split('.')
-        sentences = [s.strip() for s in sentences if s.strip()]
-        detailed_sentences = [f"Passo {i+1}: {s}." for i, s in enumerate(sentences)]
-        return "(TEA) " + " ".join(detailed_sentences)
-
-    def _narrador_response(self, user_input: str) -> str:
-        # Resumo narrativo: pega até 3 frases e coloca como narrativa
-        sentences = user_input.split('.')
-        sentences = [s.strip() for s in sentences if s.strip()]
-        summary = " ".join(sentences[:3])
-        return "(Narrador) " + summary + ("..." if len(sentences) > 3 else "")
+        if agent_name not in self.agents:
+            return f"Agente '{agent_name}' não encontrado."
+        prompt = f"""
+            Você é um assistente que adapta questões de provas para diferentes necessidades:
+            Agente: {agent_name}
+            Reescreva a questão mantendo o sentido, mas adaptando para o público alvo.
+            Questão original: {question}
+            Questão adaptada:
+            """
+        
+        try:
+            response = openai.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "Você adapta questões de prova para diferentes perfis."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.7,
+                max_tokens=500
+            )
+            adapted_text = response.choices[0].message["content"].strip()
+            return f"({agent_name.upper()} {adapted_text})"
+        except Exception as e:
+            return f"Erro ao gerar questão adaptada: {e}"

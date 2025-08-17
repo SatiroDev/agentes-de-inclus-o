@@ -72,19 +72,20 @@ const handleExtractFromImage = async (agentName: string) => {
     const data = await res.json();
 
     if (data.questoes) {
-      
       const textoFormatado = data.questoes
         .map(
-          (q: { original: string; adaptada: string }, i: number) => `Q${i + 1} - Original:\n${q.original}\n\nAdaptada:\n${q.adaptada}`
+          (q: { original: string; adaptada: string }, i: number) => 
+            `Q${i + 1} - Original:\n${q.original}\n\nAdaptada:\n${q.adaptada}`
         )
         .join("\n\n--------------------\n\n");
 
-      setOutputText(textoFormatado)
-    } else if (data.error) {
-      setError(data.error);
-    } else {
-      setError("Não foi possível extrair ou adaptar o texto da imagem.");
-    }
+      setOutputText(textoFormatado);
+    
+  } else if (data.error) {
+    setError(data.error);
+  } else {
+    setError("Não foi possível extrair ou adaptar o texto da imagem.");
+  }
   } catch (err) {
     console.error(err);
     setError("Erro ao processar a imagem.");
