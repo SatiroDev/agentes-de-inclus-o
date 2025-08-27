@@ -50,49 +50,49 @@ const AgentInterface = ({ agent, onBack }: AgentInterfaceProps) => {
   setError(null);
 };
 // ======= Função para extrair e adaptar texto =======
-const handleExtractFromImage = async (agentName: string) => {
-  if (!file) {
-    setError("Selecione uma imagem antes de continuar.");
-    return;
-  }
+// const handleExtractFromImage = async (agentName: string) => {
+//   if (!file) {
+//     setError("Selecione uma imagem antes de continuar.");
+//     return;
+//   }
 
-  setIsUploading(true);
-  setError(null);
+//   setIsUploading(true);
+//   setError(null);
 
-  try {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("agent_name", agentName); // envia sempre a string correta
+//   try {
+//     const formData = new FormData();
+//     formData.append("file", file);
+//     formData.append("agent_name", agentName); // envia sempre a string correta
 
-    const res = await fetch("http://localhost:5000/process-image", {
-      method: "POST",
-      body: formData,
-    });
+//     const res = await fetch("http://localhost:5000/process-image", {
+//       method: "POST",
+//       body: formData,
+//     });
 
-    const data = await res.json();
+//     const data = await res.json();
 
-    if (data.questoes) {
-      const textoFormatado = data.questoes
-        .map(
-          (q: { original: string; adaptada: string }, i: number) => 
-            `Q${i + 1} - Original:\n${q.original}\n\nAdaptada:\n${q.adaptada}`
-        )
-        .join("\n\n--------------------\n\n");
+//     if (data.questoes) {
+//       const textoFormatado = data.questoes
+//         .map(
+//           (q: { original: string; adaptada: string }, i: number) => 
+//             `Q${i + 1} - Original:\n${q.original}\n\nAdaptada:\n${q.adaptada}`
+//         )
+//         .join("\n\n--------------------\n\n");
 
-      setOutputText(textoFormatado);
+//       setOutputText(textoFormatado);
     
-  } else if (data.error) {
-    setError(data.error);
-  } else {
-    setError("Não foi possível extrair ou adaptar o texto da imagem.");
-  }
-  } catch (err) {
-    console.error(err);
-    setError("Erro ao processar a imagem.");
-  } finally {
-    setIsUploading(false);
-  }
-};
+//   } else if (data.error) {
+//     setError(data.error);
+//   } else {
+//     setError("Não foi possível extrair ou adaptar o texto da imagem.");
+//   }
+//   } catch (err) {
+//     console.error(err);
+//     setError("Erro ao processar a imagem.");
+//   } finally {
+//     setIsUploading(false);
+//   }
+// };
 
 
 
@@ -408,53 +408,38 @@ const handleExtractFromImage = async (agentName: string) => {
               Texto Original
             </CardTitle>
             <CardDescription>
-              Digite, cole ou envie uma imagem com o texto que deseja adaptar
+              Digite ou cole o texto que deseja adaptar
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {/* Textarea única e editável */}
             <Textarea
-              placeholder="Digite ou cole o texto aqui..."
+              placeholder="Cole seu texto aqui..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               className="min-h-[200px] resize-vertical"
               aria-label="Texto para processar"
             />
-
-            {/* Upload de imagem + botão de extrair */}
-            <div className="flex flex-col gap-2">
-              <label className="text-sm">Ou envie uma imagem:</label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="p-2 border rounded"
-              />
-
-              {/* Primeira linha de botões: Extrair e Adaptar */}
-              <div className="flex flex-wrap gap-2">
+            
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <Badge variant="secondary" className="text-xs flex-shrink">
+                {inputText.length} caracteres
+              </Badge>
+              
+              <div className="flex items-center gap-2 flex-shrink-0">
                 <Button
-                  onClick={() => handleExtractFromImage(agent.name)}
-                  disabled={!file || isUploading}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2"
+                  variant="outline"
+                  onClick={clearText}
+                  disabled={!inputText && !outputText}
+                  className="gap-2 min-w-[80px]"
                 >
-                  {isUploading ? (
-                    <>
-                      <RefreshCw className="h-4 w-4 animate-spin" />
-                      Extraindo...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4" />
-                      Extrair texto da imagem
-                    </>
-                  )}
+                  <Paintbrush className="h-4 w-4" />
+                  Limpar
                 </Button>
-
+                
                 <Button
                   onClick={simulateProcessing}
-                  disabled={isUploading || !inputText.trim()}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2"
+                  disabled={isProcessing || !inputText.trim()}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 min-w-[100px] max-w-[140px]"
                 >
                   {isProcessing ? (
                     <>
@@ -469,25 +454,9 @@ const handleExtractFromImage = async (agentName: string) => {
                   )}
                 </Button>
               </div>
-
-              {/* Segunda linha de botão: Limpar */}
-              <div>
-                <Button
-                  variant="outline"
-                  onClick={clearText}
-                  disabled={!inputText && !outputText}
-                  className="gap-2 min-w-[80px] mt-2"
-                >
-                  <Paintbrush className="h-4 w-4" />
-                  Limpar
-                </Button>
-              </div>
-
-              {error && <p className="text-red-600 text-sm">{error}</p>}
             </div>
+
           </CardContent>
-
-
         </Card>
 
         {/* Output Section */}
@@ -551,6 +520,7 @@ const handleExtractFromImage = async (agentName: string) => {
           </CardContent>
         </Card>
       </div>
+
     </div>
   );
 };
